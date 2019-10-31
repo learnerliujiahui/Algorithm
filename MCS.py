@@ -38,21 +38,21 @@ def MCS_v2(array, s, t):
         return array[s]
     else:
         m = (s + t)//2
-        print('m=', m)
-        print('call mcs', s, ',', m)
+        print('m = ', m)
+        print("call: MCS(array,{},{})".format(s, m))
         left_max = MCS_v2(array, s, m)
-        print('call mcs', m, ',', t)
-        right_max = MCS_v2(array, m, t)
+        print("call: MCS(array,{},{})".format(m+1, t))
+        right_max = MCS_v2(array, m + 1, t)
    
-        middle_sum = array[m-1] + array[m]
+        middle_sum = array[m] + array[m+1]
         middle_sum_max = middle_sum
 
-        for i in range(m-1, s, -1):
+        for i in range(m, s, -1):
             middle_sum += array[i-1]
             if middle_sum > middle_sum_max:
                 middle_sum_max = middle_sum
         
-        for j in range(m, t, 1):
+        for j in range(m+1, t, 1):
             middle_sum += array[j+1]
             if middle_sum > middle_sum_max:
                 middle_sum_max = middle_sum
